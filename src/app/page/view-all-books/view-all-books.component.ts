@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';//inheritance 
 import { FormsModule } from '@angular/forms'; 
 import { CommonModule } from '@angular/common';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -37,9 +38,13 @@ export class ViewAllBooksComponent implements OnInit {
   deleteBook() {
     let api = "http://localhost:8080/book/" + this.selectedBook.id;
     this.http.delete(api,{responseType:'text'}).subscribe((responce:string) => {
-      console.log("data");
-      
-      this.loardBooks();
+      console.log("data");      
+      this.loardBooks();     
+      Swal.fire({
+        title: "Delete Sucess!",
+        text: `${this.selectedBook.title} book is deleted`,
+        icon: "success"
+      });
       this.selectedBook = null;
 
 
@@ -57,6 +62,11 @@ export class ViewAllBooksComponent implements OnInit {
     this.http.post(postApi,this.selectedBook).subscribe(data=>{
       console.log("saved");
       this.loardBooks();
+      Swal.fire({
+        title: "Update Sucess!",
+        text: `${this.selectedBook.isbn} book is updated`,
+        icon: "success"
+      });
       this.selectedBook={};
       
     })
