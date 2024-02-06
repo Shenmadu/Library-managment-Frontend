@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';//inheritance 
-import { FormsModule } from '@angular/forms'; import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms'; 
+import { CommonModule } from '@angular/common';
 
 
 @Component({
@@ -14,7 +15,7 @@ import { FormsModule } from '@angular/forms'; import { CommonModule } from '@ang
 export class ViewAllBooksComponent implements OnInit {
   private http;
   public booklist: any = {};
-  public selectedBook: any;
+  public selectedBook: any=null;
   
 
   constructor(private httpClient: HttpClient) {
@@ -50,4 +51,15 @@ export class ViewAllBooksComponent implements OnInit {
     console.log(book.id);
 
   }
+
+  saveBook(){
+    let postApi="http://localhost:8080/book/add";
+    this.http.post(postApi,this.selectedBook).subscribe(data=>{
+      console.log("saved");
+      this.loardBooks();
+      this.selectedBook={};
+      
+    })
+  }
+
 }
