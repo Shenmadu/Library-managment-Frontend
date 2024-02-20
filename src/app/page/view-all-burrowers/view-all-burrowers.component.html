@@ -1,29 +1,117 @@
 <div class="table-responsive small container">
     <table class="table table-striped table-sm">
-      <thead>
-        <tr>
-          <th scope="col">id</th>
-          <th scope="col">Name</th>
-          <th scope="col">ISBN</th>
-          <th scope="col">Date</th>
-          
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let burrowers of allBurrowers">
-          <td>#BI{{burrowers.burrowId}}</td>
-          <td>{{burrowers.burrowName}}</td>
-          <td>{{burrowers.isbn}}</td>
-          <td>{{burrowers.date}}</td>
-         <td><button class="btn btn-danger "><i class="bi bi-trash-fill"></i></button></td>
-         <td><button class="btn btn-primary "><i class="bi bi-pencil-square"
-            ></i></button></td>
-         
-        </tr>
-      
-      
-      </tbody>
+        <thead>
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">Name</th>
+                <th scope="col">ISBN</th>
+                <th scope="col">Date</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let burrowers of allBurrowers">
+                <td>#BI{{burrowers.burrowId}}</td>
+                <td>{{burrowers.burrowName}}</td>
+                <td>{{burrowers.isbn}}</td>
+                <td>{{burrowers.date}}</td>
+                <td><button (click)="setSelesctedBurrower(burrowers)" class="btn btn-danger" data-bs-toggle="modal"
+                        data-bs-target="#deleteBurrowModal"><i class="bi bi-trash-fill"></i></button></td>
+                <td><button (click)="setSelesctedBurrower(burrowers)" class="btn btn-primary " data-bs-toggle="modal"
+                        data-bs-target="#updateBurrowModal"><i class="bi bi-pencil-square"></i></button></td>
+
+            </tr>
+
+
+        </tbody>
     </table>
-  </div>
-  
-  
+</div>
+
+<!-- modal update-st -->
+<div class="modal fade" id="updateBurrowModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Update</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">ID:</label>
+                        <input type="text" value={{selectedBurrower?.burrowId}} disabled class="form-control"
+                            id="recipient-name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Name:</label>
+                        <input type="text" [(ngModel)]="selectedBurrower && selectedBurrower.burrowName"
+                            [ngModelOptions]="{standalone:true}" class="form-control" id="recipient-name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">ISBN:</label>
+                        <input type="text" [(ngModel)]="selectedBurrower && selectedBurrower.isbn"
+                            [ngModelOptions]="{standalone:true}" value={{selectedBurrower?.isbn}} class="form-control"
+                            id="recipient-name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Date:</label>
+                        <input type="text" [(ngModel)]="selectedBurrower && selectedBurrower.date"
+                            [ngModelOptions]="{standalone:true}" class="form-control" id="recipient-name">
+                    </div>
+
+
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" (click)=" viewAllBurrowers()" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" data-bs-toggle="modal"
+                    data-bs-target="#conformModal">Update</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- modal update end-->
+
+<!-- modal update confirmation st-->
+<div class="modal fade" id="conformModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Conformation Update</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" (click)=" viewAllBurrowers()" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" (click)=" addBurrower()" class="btn btn-primary" data-bs-dismiss="modal">Confirm
+                    Update</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- modal update confirmation ed-->
+
+
+<!-- Modal delete st-->
+<div class="modal fade" id="deleteBurrowModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Comformation</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                if you want delete
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" (click)="deleteBurrower()" class="btn btn-danger"
+                    data-bs-dismiss="modal">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
