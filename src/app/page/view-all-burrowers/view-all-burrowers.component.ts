@@ -13,7 +13,7 @@ import Swal from 'sweetalert2';
 })
 export class ViewAllBurrowersComponent implements OnInit {
   private http;
-  public allBurrowers: any = [];
+  public allBurrowers: any ;
   public selectedBurrower: any = null;
 
   constructor(private httpClient: HttpClient) {

@@ -15,7 +15,7 @@ import Swal from 'sweetalert2';
 })
 export class ViewAllBooksComponent implements OnInit {
   private http;
-  public booklist: any = {};
+  public booklist: any;
   public selectedBook: any=null;
   
 
