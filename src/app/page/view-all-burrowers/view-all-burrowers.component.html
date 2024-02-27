@@ -13,6 +13,7 @@
             <tr>
                 <th scope="col">id</th>
                 <th scope="col">Name</th>
+                <th scope="col">User Name</th>
                 <th scope="col">Address1</th>
                 <th scope="col">Address2</th>
                 <th scope="col">Contact number</th>
@@ -25,6 +26,7 @@
             <tr *ngFor="let burrowers of allBurrowers">
                 <td>#BI{{burrowers.burrowId}}</td>
                 <td>{{burrowers.burrowerFirstName +" "+ burrowers.burrowerLastName }}</td>
+                <td>{{burrowers.userName}}</td>
                 <td>{{burrowers.address1}}</td>
                 <td>{{burrowers.address2}}</td>
                 <td>{{burrowers.contactNumber}}</td>
@@ -64,6 +66,11 @@
                     <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">Last Name:</label>
                         <input type="text" [(ngModel)]="selectedBurrower && selectedBurrower.burrowerLastName"
+                            [ngModelOptions]="{standalone:true}" class="form-control" id="recipient-name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">User Name:</label>
+                        <input type="text" [(ngModel)]="selectedBurrower && selectedBurrower.userName"
                             [ngModelOptions]="{standalone:true}" class="form-control" id="recipient-name">
                     </div>
                     <div class="mb-3">

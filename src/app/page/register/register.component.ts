@@ -15,13 +15,12 @@ export class RegisterComponent implements OnInit {
   private http;
   public countryList: any;
   public selectedCountry: any;
-
-
-
+  public isExist: any;
 
   public burrower = {
     burrowerFirstName: null,
     burrowerLastName: null,
+    userName: null,
     address1: null,
     address2: null,
     contactNumber: null,
@@ -50,25 +49,45 @@ export class RegisterComponent implements OnInit {
     console.log(this.setSelectedCountry);
 
   }
-  saveBurrower() {
-    this.http.post("http://localhost:8081/burrow/add", this.burrower)
+  submit() {
+    this.http.get(`http://localhost:8081/burrow/is-exist/${this.burrower.userName}`)
       .subscribe((data) => {        
-        this.burrower = {
-          burrowerFirstName: null,
-          burrowerLastName: null,
-          address1: null,
-          address2: null,
-          contactNumber: null,
-          email: null,
-          country: null,
-        }
-        Swal.fire({
-          title: "Register Sucess!",
-          text: `Burrower Register succesfull`,
-          icon: "success"
-        });
+        this.saveBurrower(data)
 
       })
+  }
+
+
+  saveBurrower(data: any) {
+    if (!data == true) {
+      this.http.post("http://localhost:8081/burrow/add", this.burrower)
+        .subscribe((data) => {
+          this.burrower = {
+            burrowerFirstName: null,
+            burrowerLastName: null,
+            userName: null,
+            address1: null,
+            address2: null,
+            contactNumber: null,
+            email: null,
+            country: null,
+          }
+          Swal.fire({
+            title: "Register Sucess!",
+            text: `Burrower Register succesfull`,
+            icon: "success"
+          });
+
+        })
+
+    } else {
+      Swal.fire({
+        title: "Register not sucess!",
+        text: `User name already exists`,
+        icon: "error"
+      });
+    }
+
   }
 
 }
