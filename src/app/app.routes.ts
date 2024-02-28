@@ -24,4 +24,10 @@ export const routes: Routes = [
         path:"viewallburrowers",
         component : ViewAllBurrowersComponent
     }
+    ,
+    {
+        path:"",
+        redirectTo:"login",
+        pathMatch:"full"
+    }
 ];

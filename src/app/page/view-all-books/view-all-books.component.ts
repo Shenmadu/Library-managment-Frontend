@@ -4,12 +4,13 @@ import { HttpClientModule } from '@angular/common/http';//inheritance
 import { FormsModule } from '@angular/forms'; 
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
+import { NavComponent } from '../../common/nav/nav.component';
 
 
 @Component({
   selector: 'app-view-all-books',
   standalone: true,
-  imports: [HttpClientModule, FormsModule, CommonModule],//without app module ts import http clientModule
+  imports: [HttpClientModule, FormsModule, CommonModule,NavComponent],//without app module ts import http clientModule
   templateUrl: './view-all-books.component.html',
   styleUrl: './view-all-books.component.css'
 })
@@ -17,6 +18,7 @@ export class ViewAllBooksComponent implements OnInit {
   private http;
   public booklist: any;
   public selectedBook: any=null;
+  private baseURL:string="http://localhost:8080";
   
 
   constructor(private httpClient: HttpClient) {
@@ -27,7 +29,7 @@ export class ViewAllBooksComponent implements OnInit {
   }
 
   loardBooks() {
-    this.http.get("http://localhost:8080/book/get") //asyncronize process
+    this.http.get(this.baseURL+"/book/get") //asyncronize process
       .subscribe((data) => {
         this.booklist = data;
         console.log(data);
@@ -36,7 +38,7 @@ export class ViewAllBooksComponent implements OnInit {
   }
 
   deleteBook() {
-    let api = "http://localhost:8080/book/" + this.selectedBook.id;
+    let api = this.baseURL+"/book/" + this.selectedBook.id;
     this.http.delete(api,{responseType:'text'}).subscribe((responce:string) => {
       console.log("data");      
       this.loardBooks();     
@@ -58,7 +60,7 @@ export class ViewAllBooksComponent implements OnInit {
   }
 
   saveBook(){
-    let postApi="http://localhost:8080/book/add";
+    let postApi=this.baseURL+"/book/add";
     this.http.post(postApi,this.selectedBook).subscribe(data=>{
       console.log("saved");
       this.loardBooks();
