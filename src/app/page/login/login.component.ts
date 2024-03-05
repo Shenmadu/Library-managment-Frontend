@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Route, Router, RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,6 +12,7 @@ import { Route, Router, RouterLink } from '@angular/router';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
+  
   public user:any={
     email:"",
     password:""
@@ -22,8 +23,7 @@ export class LoginComponent {
     this.http.post("http://localhost:8081/login/request-login",this.user)
     .subscribe((res:any)=>{
       console.log(res);
-      if(res==true){
-        console.log("succes");
+      if(res==true){        
         this.router.navigate(['/viewallburrowers']);
         
       }else{
