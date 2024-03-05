@@ -54,7 +54,7 @@ export class ViewAllBurrowersComponent implements OnInit {
         console.log(data);
         Swal.fire({
           title: "Delete Sucess!",
-          text: `${this.selectedBurrower.name} book is deleted`,
+          text: `${this.selectedBurrower.userName} user is deleted`,
           icon: "success"
         });
         this.selectedBurrower = null;
