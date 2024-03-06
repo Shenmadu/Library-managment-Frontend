@@ -24,7 +24,7 @@ export class LoginComponent {
     .subscribe((res:any)=>{
       console.log(res);
       if(res==true){        
-        this.router.navigate(['/viewallburrowers']);
+        this.router.navigate(['/home']);
         
       }else{
         console.log("invalid");

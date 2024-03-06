@@ -3,6 +3,7 @@ import { LoginComponent } from './page/login/login.component';
 import { ViewAllBooksComponent } from './page/view-all-books/view-all-books.component';
 import { RegisterComponent } from './page/register/register.component';
 import { ViewAllBurrowersComponent } from './page/view-all-burrowers/view-all-burrowers.component';
+import { DashboardComponent } from './page/dashboard/dashboard.component';
 
 export const routes: Routes = [
     {
@@ -29,5 +30,10 @@ export const routes: Routes = [
         path:"",
         redirectTo:"login",
         pathMatch:"full"
+    }
+    ,
+    {
+        path:"home",
+        component : DashboardComponent
     }
 ];
