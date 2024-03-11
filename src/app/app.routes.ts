@@ -4,6 +4,8 @@ import { ViewAllBooksComponent } from './page/view-all-books/view-all-books.comp
 import { RegisterComponent } from './page/register/register.component';
 import { ViewAllBurrowersComponent } from './page/view-all-burrowers/view-all-burrowers.component';
 import { DashboardComponent } from './page/dashboard/dashboard.component';
+import { AddBooksComponent } from './page/add-books/add-books.component';
+import { BurrowBookComponent } from './page/burrow-book/burrow-book.component';
 
 export const routes: Routes = [
     {
@@ -35,5 +37,15 @@ export const routes: Routes = [
     {
         path:"home",
         component : DashboardComponent
+    }
+    ,
+    {
+        path:"addbook",
+        component :AddBooksComponent
+    }
+    ,
+    {
+        path:"burrowbook",
+        component : BurrowBookComponent
     }
 ];
