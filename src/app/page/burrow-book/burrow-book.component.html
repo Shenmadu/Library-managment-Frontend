@@ -1,2 +1,11 @@
 <app-nav></app-nav>
-<p>burrow-book works!</p>
+<div class="container">
+    <div class="col-6 mx-auto ">
+        <div class="input-group mb-3">
+            <input type="text" [(ngModel)]="userName"  [ngModelOptions]="{standalone:true}" class="form-control" placeholder="Burrower's username" aria-label="Burrower's username"
+                aria-describedby="button-addon2">
+            <button class="btn btn-success " type="button"  id="button-addon2"(click)="serach()">Search</button>
+        </div>
+    </div>
+    
+</div>
