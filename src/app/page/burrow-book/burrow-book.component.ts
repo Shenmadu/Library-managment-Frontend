@@ -30,7 +30,7 @@ export class BurrowBookComponent {
     this.http.get(`http://localhost:8080/book/search/${this.searchBookID}`)
       .subscribe((data) => {
         if (data) {
-          console.log(data);
+          // console.log(data);
           this.book = data;
           Swal.fire({
             title: `"${this.book.title}" Do you want to get this Book?`,
@@ -41,7 +41,7 @@ export class BurrowBookComponent {
           }).then((result) => {
             /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
-              this.cartList.push(data);
+              this.cartList.push(this.book);                       
               Swal.fire("Added Cart!", "", "success");
             } else if (result.isDenied) {
               Swal.fire("Changes are not saved", "", "info");
@@ -56,8 +56,26 @@ export class BurrowBookComponent {
           });
         }
 
-
-
       })
+  }
+  bookid:any=[];
+  loardBookId(){
+    this.cartList.forEach((element:any) => {
+      this.bookid.push(element.id);
+    });
+  }
+
+
+  burrowBook(){
+    this.loardBookId();
+    const burrowBook:any={
+      burrowId:this.user.burrowId,
+      books:this.bookid,
+      date:new Date(),
+      fine:""
+    }  
+   console.log(burrowBook);
+   
+    
   }
 }

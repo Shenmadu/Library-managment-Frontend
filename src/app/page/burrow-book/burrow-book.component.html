@@ -7,7 +7,7 @@
             <button class="btn btn-success " type="button" id="button-addon2" (click)="serach()">Search</button>
         </div>
     </div>
-    <table class="table">
+    <table class="table" *ngIf="user">
         <thead>
             <tr>
                 <th scope="col">User Name</th>
@@ -36,7 +36,7 @@
             </div>
         </div>
 
-        <table class="table" *ngIf="user">
+        <table class="table" *ngIf="book">
             <thead>
                 <tr>
                     <th scope="col">ID</th>
@@ -56,7 +56,9 @@
                 </tr>
 
             </tbody>
+            <button type="button" class="btn btn-primary"(click)="burrowBook()">Burrow now</button>
         </table>
+      
 
     </div>
 
