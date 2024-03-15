@@ -29,8 +29,7 @@ export class BurrowBookComponent {
   searchBook() {
     this.http.get(`http://localhost:8080/book/search/${this.searchBookID}`)
       .subscribe((data) => {
-        if (data) {
-          // console.log(data);
+        if (data) {         
           this.book = data;
           Swal.fire({
             title: `"${this.book.title}" Do you want to get this Book?`,
@@ -66,15 +65,19 @@ export class BurrowBookComponent {
   }
 
 
-  burrowBook(){
+  borrowBook(){
     this.loardBookId();
     const burrowBook:any={
-      burrowId:this.user.burrowId,
+      borrowId:this.user.burrowId,
       books:this.bookid,
       date:new Date(),
       fine:""
     }  
-   console.log(burrowBook);
+   this.http.post("http://localhost:8082/borrow-Book/add",burrowBook)
+   .subscribe((data)=>{
+    console.log(data);
+    
+   })
    
     
   }

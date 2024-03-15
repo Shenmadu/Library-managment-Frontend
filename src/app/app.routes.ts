@@ -6,6 +6,7 @@ import { ViewAllBurrowersComponent } from './page/view-all-burrowers/view-all-bu
 import { DashboardComponent } from './page/dashboard/dashboard.component';
 import { AddBooksComponent } from './page/add-books/add-books.component';
 import { BurrowBookComponent } from './page/burrow-book/burrow-book.component';
+import { ViewAllTransitonComponent } from './page/view-all-transiton/view-all-transiton.component';
 
 export const routes: Routes = [
     {
@@ -47,5 +48,10 @@ export const routes: Routes = [
     {
         path:"burrowbook",
         component : BurrowBookComponent
+    }
+    ,
+    {
+        path:"viewallborrowbook",
+        component : ViewAllTransitonComponent
     }
 ];
